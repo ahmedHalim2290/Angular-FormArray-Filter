@@ -1,0 +1,17 @@
+<p>Start editing to see some magic happen :)</p>
+<input #searchBox (input)="filterText = searchBox.value" placeholder="Search" />
+<form [formGroup]="form">
+  <div
+    *ngFor="
+      let frmGrp of formArr.controls | formarrayFilter: filterText:'name';
+      let i = index;
+      trackBy: trackByFn
+    "
+  >
+    <div formArrayName="formArr">
+      <div [formGroup]="frmGrp">
+        {{ frmGrp.get('id').value }} <input formControlName="name" />
+      </div>
+    </div>
+  </div>
+</form>
